@@ -1,0 +1,14 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  screeps:
+    build: .
+    # ports:
+    #   - "5000:5000"
+    volumes:
+      - screeps-data-volume:/screeps-data
+    links:
+      - screeps
+  screeps:
+    image: screepsdocker:latest
+volumes:
+  screeps-data-volume:
