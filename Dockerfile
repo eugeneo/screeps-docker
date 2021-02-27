@@ -8,6 +8,7 @@ WORKDIR /screeps
 
 RUN npm install screeps/screeps
 
-RUN echo ${steam_api_key} | screeps init /screeps-data
+RUN echo ${steam_api_key} | npx screeps init /screeps-data
 
-CMD npx screeps start --db /screeps-data/db.json --assetdir /screeps-data/assets --modfile /screeps-data/mods.json --steam_api_key ${steam_api_key} --logdir /screeps-data/logs
+WORKDIR /screeps-data
+CMD ../screeps/node_modules/.bin/screeps start
