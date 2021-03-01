@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: screepsdocker
+  name: screepsdocker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: screepsdocker
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: screepsdocker
+    spec:
+      containers:
+        - image: screepsdocker
+          name: screepsdocker
+          ports:
+            - containerPort: 21025
+            - containerPort: 21026
+          resources: {}
+          volumeMounts:
+            - mountPath: /screeps-data
+              name: screeps-data-volume
+      restartPolicy: Always
+      volumes:
+        - name: screeps-data-volume
+          persistentVolumeClaim:
+            claimName: screeps-data-volume
+status: {}

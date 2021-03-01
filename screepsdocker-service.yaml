@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: screepsdocker
+  name: screepsdocker
+spec:
+  ports:
+    - name: "21025"
+      port: 21025
+      targetPort: 21025
+    - name: "21026"
+      port: 21026
+      targetPort: 21026
+  selector:
+    io.kompose.service: screepsdocker
+status:
+  loadBalancer: {}
